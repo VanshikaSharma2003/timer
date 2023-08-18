@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<style>
+    body{
+    display: flex;
+    justify-content: center;
+
+}
+#countdown{
+    font-size: 2rem;
+    text-align: center;
+    margin: 1rem;
+}
+#countdown-timer span{
+    display: inline-block;
+    padding: 1rem;
+    width: 200px;
+    margin: 0.5rem;
+    border: 1px solid black ;
+
+}
+</style>
+<body>
+    <table id="countdown">
+        <tr id="countdown-timer">
+            <td><span id="days">x</span></td>
+            <td><span id="hours">x</span></td>
+            <td><span id="minutes">x</span></td>
+            <td><span id="seconds">x</span></td>
+        </tr>
+        <tr id="countdown-labels">
+            <td><span>Days</span></td>
+            <td><span>Hours</span></td>
+            <td><span>Minutes</span></td>
+            <td><span>Seconds</span></td>
+        </tr>
+    </table>
+   
+    <script>
+        const storeOpening = new Date('sept 18, 2023 00:00:00');
+
+        setCountdown(storeOpening);
+
+        setInterval(function() {
+            setCountdown(storeOpening);
+
+        },1000)
+
+        function setCountdown(countingDownTime){
+            let now = new Date();
+            let timeRemaining = countingDownTime - now;
+
+            console.log(timeRemaining);
+
+            let seconds = Math.floor(timeRemaining / 1000);
+            let minutes = Math.floor(timeRemaining / (1000*60));
+            let hours = Math.floor(timeRemaining / (1000*60*60));
+            let days = Math.floor(timeRemaining / (1000*60*60*24));
+
+            console.log(days,hours, minutes, seconds);
+
+            let daysToDisplay = days;
+            let hoursToDisplay = hours - (days *24);
+            let minutesToDisplay = minutes - (hours *60);
+            let secondsToDisplay = seconds - (minutes *60);
+
+            console.log(daysToDisplay, hoursToDisplay, minutesToDisplay, secondsToDisplay);
+
+            const daysE1 = document.getElementById('days');
+            const hoursE1 = document.getElementById('hours');
+            const minutesE1 = document.getElementById('minutes');
+            const secondsE1 = document.getElementById('seconds');
+
+            daysE1.textContent = daysToDisplay;
+            hoursE1.textContent = hoursToDisplay;
+            minutesE1.textContent = minutesToDisplay;
+            secondsE1.textContent = secondsToDisplay;
+            
+        }
+    </script>
+</body>
+</html>
